@@ -1,13 +1,17 @@
 
 import java.util.*;
 class SearchInASortedArray{
-    static int search(int arr[],int n,int key){
+    static boolean search(int arr[],int n,int key){
         int low=0;
         int high=n-1;
         while(low<=high){
             int mid=(low+high)/2;
             if(arr[mid]==key)
-                return mid;
+                return true;
+            if(arr[low]==arr[mid] && arr[mid]==arr[high]){
+                low=low+1;
+                high=high-1;
+            }
             if(arr[low]<=arr[mid]){
                 if(arr[low]<=key && key<=arr[mid]){
                     high=mid-1;
@@ -23,7 +27,7 @@ class SearchInASortedArray{
             }
 
         }
-        return -1;
+        return true;
     }
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
